@@ -56,6 +56,9 @@ uint8_t const LS_DATE = 2;
 uint8_t const LS_SIZE = 4;
 /** ls() flag for recursive list of subdirectories */
 uint8_t const LS_R = 8;
+/** ls() flag for JSON format (ignores rest of flags)*/
+uint8_t const LS_J = 16;
+
 
 // flags for timestamp
 /** set the file's last access date */

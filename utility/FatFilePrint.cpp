@@ -94,28 +94,40 @@ void FatFile::dmpFile(print_t* pr, uint32_t pos, size_t n) {
 void FatFile::ls(print_t* pr, uint8_t flags, uint8_t indent) {
   FatFile file;
   rewind();
+  bool firstOccurence = true;
   while (file.openNext(this, O_READ)) {
     // indent for dir level
     if (!file.isHidden() || (flags & LS_A)) {
-      for (uint8_t i = 0; i < indent; i++) {
-        pr->write(' ');
-      }
-      if (flags & LS_DATE) {
-        file.printModifyDateTime(pr);
-        pr->write(' ');
-      }
-      if (flags & LS_SIZE) {
-        file.printFileSize(pr);
-        pr->write(' ');
-      }
-      file.printName(pr);
-      if (file.isDir()) {
-        pr->write('/');
-      }
-      pr->write('\r');
-      pr->write('\n');
-      if ((flags & LS_R) && file.isDir()) {
-        file.ls(pr, flags, indent + 2);
+      if (flags & LS_J) {
+        if (!firstOccurence) pr->write(',');
+        pr->write('"');
+        if (file.isDir()) pr->write('*');
+        file.printName(pr);
+        pr->write('|');
+        file.printSFN(pr);
+        pr->write('"');
+        firstOccurence = false;
+      } else {
+        for (uint8_t i = 0; i < indent; i++) {
+          pr->write(' ');
+        }
+        if (flags & LS_DATE) {
+          file.printModifyDateTime(pr);
+          pr->write(' ');
+        }
+        if (flags & LS_SIZE) {
+          file.printFileSize(pr);
+          pr->write(' ');
+        }
+        file.printName(pr);
+        if (file.isDir()) {
+          pr->write('/');
+        }
+        pr->write('\r');
+        pr->write('\n');
+        if ((flags & LS_R) && file.isDir()) {
+          file.ls(pr, flags, indent + 2);
+        }
       }
     }
     file.close();
