@@ -90,6 +90,7 @@ void FatFile::dmpFile(print_t* pr, uint32_t pos, size_t n) {
   pr->write('\r');
   pr->write('\n');
 }
+
 //------------------------------------------------------------------------------
 void FatFile::ls(print_t* pr, uint8_t flags, uint8_t indent) {
   FatFile file;
@@ -102,9 +103,9 @@ void FatFile::ls(print_t* pr, uint8_t flags, uint8_t indent) {
         if (!firstOccurence) pr->write(',');
         pr->write('"');
         if (file.isDir()) pr->write('*');
-        file.printName(pr);
-        pr->write('|');
         file.printSFN(pr);
+        pr->write('|');
+        file.printName(pr);
         pr->write('"');
         firstOccurence = false;
       } else {
