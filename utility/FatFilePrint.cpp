@@ -105,6 +105,7 @@ void FatFile::ls(print_t* pr, uint8_t flags, uint8_t indent) {
         if (file.isDir()) pr->write('*');
         file.printSFN(pr);
         pr->write('|');
+        if (file.isDir()) pr->write('*');
         file.printName(pr);
         pr->write('"');
         firstOccurence = false;
