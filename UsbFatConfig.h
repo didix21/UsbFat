@@ -29,7 +29,7 @@
 #endif  // __AVR__
 //------------------------------------------------------------------------------
 /** Print debufg messages if USB_FAT_DBG_MODE is nonzero */
-#define USB_FAT_DBG_MODE 1
+#define USB_FAT_DBG_MODE 0
 //------------------------------------------------------------------------------
 /** Maximum time to initialize the USB bus */
 #define TIMEOUT_MILLIS 8000
