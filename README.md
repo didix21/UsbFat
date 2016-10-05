@@ -4,4 +4,4 @@ This repository contains the library that allows to AZOR work with USB 2.0 Stick
 
 ## The original UsbFat
 
-The original library can be foun [HERE](). **VERY IMPORTANT**: The USB_Host_Shield_2.0 is included.
+The original library can be foun [HERE](https://github.com/greiman/UsbFat). **VERY IMPORTANT**: The USB_Host_Shield_2.0 is included.
